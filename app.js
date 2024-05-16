@@ -94,3 +94,50 @@ console.log("Incremented age:", person);
 const copy = copyAndIncrementAge(person);
 console.log("Copy with incremented age:", copy);
 console.log("Original object:", person); // Original object remains unchanged
+
+//Part 4:Thinking Practically//
+// Sample employee data
+const employees = [
+    { id: "42", name: "Bruce", occupation: "Knight", age: "41" },
+    { id: "48", name: "Barry", occupation: "Runner", age: "25" },
+    { id: "57", name: "Bob", occupation: "Fry Cook", age: "19" },
+    { id: "63", name: "Blaine", occupation: "Quiz Master", age: "58" },
+    { id: "7", name: "Bilbo", occupation: "None", age: "111" }
+];
+
+// Function to add a new employee
+function addEmployee(id, name, occupation, age) {
+    employees.push({ id, name, occupation, age });
+}
+
+// Function to remove an employee by ID
+function removeEmployeeById(id) {
+    const index = employees.findIndex(emp => emp.id === id);
+    if (index !== -1) {
+        employees.splice(index, 1);
+    }
+}
+
+// Function to update employee details
+function updateEmployeeDetails(id, updatedInfo) {
+    const index = employees.findIndex(emp => emp.id === id);
+    if (index !== -1) {
+        employees[index] = { ...employees[index], ...updatedInfo };
+    }
+}
+
+// Function to calculate the average age of employees
+function calculateAverageAge() {
+    const sumOfAges = employees.reduce((total, emp) => total + parseInt(emp.age), 0);
+    return sumOfAges / employees.length;
+}
+
+// Test cases
+console.log("Before adding new employee:", employees);
+addEmployee("99", "Clark", "Journalist", "35");
+console.log("After adding new employee:", employees);
+removeEmployeeById("42");
+console.log("After removing employee with ID 42:", employees);
+updateEmployeeDetails("48", { occupation: "Athlete", age: "26" });
+console.log("After updating details of employee with ID 48:", employees);
+console.log("Average age of employees:", calculateAverageAge());
