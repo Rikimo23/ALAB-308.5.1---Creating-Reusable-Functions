@@ -141,3 +141,61 @@ console.log("After removing employee with ID 42:", employees);
 updateEmployeeDetails("48", { occupation: "Athlete", age: "26" });
 console.log("After updating details of employee with ID 48:", employees);
 console.log("Average age of employees:", calculateAverageAge());
+
+//Part 5: Thinking back//
+
+// Original To-Do List Application
+
+let tasks = [];
+
+function addTask(task) {
+    tasks.push({ task, completed: false });
+}
+
+function removeTask(index) {
+    tasks.splice(index, 1);
+}
+
+function markTaskAsCompleted(index) {
+    tasks[index].completed = true;
+}
+
+function listAllTasks() {
+    tasks.forEach((task, index) => {
+        console.log(`${index + 1}. ${task.task} - ${task.completed ? "Completed" : "Incomplete"}`);
+    });
+}
+
+// Refactored To-Do List Application
+
+const todoList = {
+    tasks: [],
+    addTask(task) {
+        this.tasks.push({ task, completed: false });
+    },
+    removeTask(index) {
+        this.tasks.splice(index, 1);
+    },
+    markTaskAsCompleted(index) {
+        this.tasks[index].completed = true;
+    },
+    listAllTasks() {
+        this.tasks.forEach((task, index) => {
+            console.log(`${index + 1}. ${task.task} - ${task.completed ? "Completed" : "Incomplete"}`);
+        });
+    }
+};
+
+// Test cases
+todoList.addTask("Complete JavaScript assignment");
+todoList.addTask("Study for exam");
+todoList.addTask("Go for a run");
+
+console.log("Original To-Do List:");
+todoList.listAllTasks();
+
+todoList.markTaskAsCompleted(0);
+todoList.removeTask(1);
+
+console.log("Updated To-Do List:");
+todoList.listAllTasks();
